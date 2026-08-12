@@ -124,11 +124,17 @@ evidence:
 2. 写到 `05_manuscript/volumes/continue/`（或 `side-01/`），维护 `volume.yaml`
 3. 更新 `03_continuity/*`
 4. **不得**静默改 canon；必须改设定时写入 `09_reviews/canon_change_requests.md` 或向用户确认
+5. 正文 YAML front matter 必填：`id`、`kind: continue`、`source_after`（所接上一章）
+6. 对照 `04_outline/continue_brief.md` 的目标字数；落盘后跑 `palimpsest quality <book-id>`
+7. 本次 session 必须含 Input / Actions / Open questions（模板：`08_sessions/TEMPLATE.md`）
 
 ### 5.5 `rewrite`
 
 1. 读 original 目标章 + `04_outline/rewrite_brief.md`
 2. 写到 `05_manuscript/volumes/rewrite/`，front matter 记录源章与意图
+3. 正文 YAML front matter 必填：`id`、`kind: rewrite`、`source` 或 `source_chapter`（对应 original 章）
+4. 对照 rewrite_brief 字数与硬约束；不得覆盖 `05_manuscript/original/`
+5. 落盘后跑 `palimpsest quality <book-id> --chapter <id>`；session 要求同 §5.4
 
 ---
 
@@ -146,6 +152,19 @@ evidence:
 - 同人多称呼写入 `aliases`
 - 前后矛盾 → `03_continuity/conflicts.md`，不要直接抹掉
 - 不编造原文没有的重大身世，除非任务是创意扩写且已标明
+
+### Quality gate
+
+续写/改写落盘后执行：
+
+```text
+palimpsest quality <book-id> [--chapter c004]
+```
+
+- 未指定 `--chapter` 时检查最新一篇 continue/rewrite
+- **错误（退出 1）**：缺章、`kind` 不是 continue/rewrite、缺 `id` / `kind` / `source_after` 或源章字段
+- **警告（仍退出 0）**：无 brief、字数偏离目标、无 session 或缺少 Input / Actions / Open questions
+- 人工清单：`09_reviews/quality_checklist.md`
 
 ---
 
@@ -185,6 +204,8 @@ evidence:
 ## Next
 - 建议的下一步
 ```
+
+`palimpsest quality` 在 `08_sessions/` 查找提到本章或 `task: continue` / `task: rewrite` 的日志，并检查 Input / Actions / Open questions。缺日志或缺标题为警告。可复制 `templates/book/08_sessions/TEMPLATE.md`。
 
 ---
 
