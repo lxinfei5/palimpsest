@@ -70,6 +70,11 @@ books/<id>/
 | `palimpsest validate [id]` | 结构检查 |
 | `palimpsest serve` | 本地只读阅读器 |
 | `palimpsest path <id>` | 打印书目录 |
+| `palimpsest quality <id> [--chapter c004]` | 续写/改写质量门槛与 session 检查 |
+| `palimpsest context <id> [--chapter c004]` | 按优先级装配可粘贴上下文 |
+| `palimpsest check <id> [--volume continue]` | 人名漂移 / 伏笔 / 状态是否过期 |
+| `palimpsest export st <id>` | 导出 SillyTavern 世界书 + 写作卡 |
+| `palimpsest export epub <id> [--volume …]` | 导出分册 EPUB |
 
 ---
 
@@ -99,5 +104,5 @@ palimpsest/
 
 ## 现状
 
-MVP 已落地：脚手架、schema、规约、demo、阅读器。  
-尚未做：可视化 Codex、ST 导出、云同步、一键全书生成。边界见 [docs/03-direction-a.md](./docs/03-direction-a.md)。
+MVP + 二期已落地：脚手架、规约、demo、阅读器、质量门槛、上下文装配、一致性检查、ST/EPUB 导出。  
+尚未做：可视化 Codex、云同步、一键全书生成。边界见 [docs/03-direction-a.md](./docs/03-direction-a.md)。

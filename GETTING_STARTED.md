@@ -8,6 +8,11 @@ python3 -m venv .venv
 # 看样例书
 .venv/bin/palimpsest list
 .venv/bin/palimpsest validate harbor-bell
+.venv/bin/palimpsest quality harbor-bell
+.venv/bin/palimpsest check harbor-bell
+.venv/bin/palimpsest context harbor-bell --chapter c004 --max-chars 4000
+.venv/bin/palimpsest export st harbor-bell
+.venv/bin/palimpsest export epub harbor-bell --volume original
 
 # 本地阅读
 .venv/bin/palimpsest serve

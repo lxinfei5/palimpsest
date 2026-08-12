@@ -40,6 +40,14 @@ S/A 独立 yaml，C 进 _extras，更新 _index 与 relationships。
 产出到 05_manuscript/volumes/rewrite/，不要覆盖 original。
 ```
 
+## 质量 / 上下文 / 一致性 / 导出
+
+```text
+对 books/<id> 跑 palimpsest quality 与 palimpsest check，列出 warning 再决定是否续写。
+需要生成时先 palimpsest context books/<id> --chapter <cXXX>。
+导出：palimpsest export st <id>；分册 epub 用 palimpsest export epub <id> --volume continue。
+```
+
 ## 对照（只读）
 
 ```text

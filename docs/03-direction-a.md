@@ -58,12 +58,12 @@
 
 **MVP 明确不做：** 云同步、协作、可视化 Codex 大编辑器、一键全书生成、移动端、内置付费模型。
 
-### 4.2 第二阶段（仍属方向 A）
+### 4.2 第二阶段（仍属方向 A）— 已落地 2026-08-13
 
-- `continue` / `rewrite` 质量门槛与 session 日志标准化  
-- 上下文装配说明（优先级表）+ 可选检索 chunks  
-- 导出：ST 世界书/角色卡（可选）、epub  
-- 简单一致性检查（人名漂移、open_threads 未处理提醒）
+- [x] `continue` / `rewrite` 质量门槛与 session 日志标准化（`palimpsest quality`）  
+- [x] 上下文装配说明 + chunks（`docs/05-context.md`，`palimpsest context`）  
+- [x] 导出 ST 世界书/写作卡与 EPUB（`palimpsest export`）  
+- [x] 简单一致性检查（`palimpsest check`）
 
 ### 4.3 刻意延后
 
