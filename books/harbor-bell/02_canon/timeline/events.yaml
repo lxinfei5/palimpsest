@@ -1,0 +1,14 @@
+book_id: harbor-bell
+events:
+  - id: ev-arrival
+    when: c001
+    summary: 顾青桐末班船抵灰屿，借住灯塔堆房。
+  - id: ev-maps
+    when: c002
+    summary: 三张海图对照；夜雾，沈晚潮连敲铜铃。
+  - id: ev-crack
+    when: c003
+    summary: 顾青桐见铃上裂纹；沈晚潮约退潮带路。
+  - id: ev-low-tide
+    when: c004
+    summary: 两人走上鹿回头，见到铁环与断绳。

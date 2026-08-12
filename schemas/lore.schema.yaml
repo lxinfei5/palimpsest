@@ -1,0 +1,17 @@
+# 地点 / 势力 / 物品 / 规则 / 词条 共用形状
+# 02_canon/{locations,factions,items,rules,glossary}/<slug>.yaml
+
+id: string
+name: string
+aliases: [string]
+kind: location|faction|item|rule|glossary|other
+summary: string
+details: string
+related: [string]
+inferred: boolean
+evidence:
+  - ref: string
+    quote: string
+    confidence: high|medium|low
+tags: [string]
+last_updated: string

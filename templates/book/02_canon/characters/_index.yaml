@@ -1,0 +1,8 @@
+book_id: "{{BOOK_ID}}"
+updated_at: null
+characters: []
+  # - id: example
+  #   name: 示例
+  #   tier: S
+  #   file: example.yaml
+  #   summary: 一句话

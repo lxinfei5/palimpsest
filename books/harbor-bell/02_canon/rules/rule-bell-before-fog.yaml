@@ -1,0 +1,14 @@
+id: rule-bell-before-fog
+name: 铃先响，雾后到
+aliases: [沈叔的规矩]
+kind: rule
+summary: 灰屿规矩：先敲港铃，雾随后至。
+details: 阿麦转述为沈叔的规矩。c001 在雾未到时已闻铃。
+related: [harbor-bell, shen-wanchao]
+inferred: false
+evidence:
+  - ref: c001
+    quote: 「铃先响，雾后到。沈叔的规矩。」
+    confidence: high
+tags: [custom]
+last_updated: 2026-08-12

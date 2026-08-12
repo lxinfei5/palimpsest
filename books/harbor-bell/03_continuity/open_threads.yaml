@@ -1,0 +1,31 @@
+book_id: harbor-bell
+updated_at: 2026-08-12
+threads:
+  - id: th-001
+    title: 铃记得的那次沉船
+    status: open
+    planted_at: c002
+    payoff_at: null
+    summary: 沈晚潮说铜铃记得上次沉船，拒绝说明是哪一次。c004 只透露「等人回来的船」先走了。
+    must_keep_on_continue: true
+  - id: th-002
+    title: 沈晚潮不愿说出的名字
+    status: open
+    planted_at: c003
+    payoff_at: null
+    summary: 顾青桐笔记：守灯人不愿说出某个名字。
+    must_keep_on_continue: true
+  - id: th-003
+    title: 鹿回头是否稳定存在
+    status: open
+    planted_at: c001
+    payoff_at: null
+    summary: 海图三代不一。c004 证实退潮可见，但结尾强调「暂时」。
+    must_keep_on_continue: true
+  - id: th-004
+    title: 铁环与青花碎瓷
+    status: open
+    planted_at: c004
+    payoff_at: null
+    summary: 岛上铁环卡着断绳；泥里有磨圆青花瓷片，沈晚潮不许带走。
+    must_keep_on_continue: true

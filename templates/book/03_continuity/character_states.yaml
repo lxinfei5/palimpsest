@@ -1,0 +1,11 @@
+book_id: "{{BOOK_ID}}"
+as_of_chapter: null
+updated_at: null
+states: []
+  # - id: example
+  #   location: ""
+  #   inventory: []
+  #   injuries: []
+  #   knowledge: []
+  #   emotional: ""
+  #   flags: []

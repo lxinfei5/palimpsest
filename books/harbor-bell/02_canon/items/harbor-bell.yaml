@@ -1,0 +1,17 @@
+id: harbor-bell
+name: 港铃
+aliases: [铜铃]
+kind: item
+summary: 塔顶铜铃，沿口有盐线细裂纹。雾来前由沈晚潮敲响。
+details: 声音发闷。沈晚潮认为整铃太亮会使船误判距岸。他称铃记得上次沉船。
+related: [lighthouse, rule-bell-before-fog]
+inferred: false
+evidence:
+  - ref: c003
+    quote: 铜铃比想象中小，沿口有一道细纹，盐在缝里结成白线。
+    confidence: high
+  - ref: c003
+    quote: 「裂了才准。整的太亮，船会以为岸很近。」
+    confidence: high
+tags: [bell]
+last_updated: 2026-08-12

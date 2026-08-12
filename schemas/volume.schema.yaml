@@ -1,0 +1,9 @@
+# 05_manuscript/volumes/<volume-id>/volume.yaml
+# 原作册也可有 05_manuscript/original/volume.yaml（可选）
+
+id: string                     # continue | rewrite | side-01
+title: string
+kind: original|continue|side|rewrite
+order: number                  # 阅读器排序，原作建议 0
+parent_book: string            # book-id
+notes: string

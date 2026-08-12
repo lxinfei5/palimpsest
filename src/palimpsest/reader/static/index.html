@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Palimpsest · 叠简</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("ps-theme") || "dark";
+        document.documentElement.dataset.theme = t;
+        if (t === "light") document.documentElement.classList.add("light");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-head">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">叠</span>
+          <div>
+            <div class="brand-title">Palimpsest</div>
+            <div class="brand-sub">叠简 · 本地阅读</div>
+          </div>
+        </div>
+        <button type="button" id="btn-refresh" class="icon-btn" title="刷新">↻</button>
+      </header>
+      <div class="search-wrap">
+        <input id="book-search" type="search" placeholder="搜索书名…" autocomplete="off" />
+      </div>
+      <div class="track-filter-tabs" role="tablist" aria-label="分册类型">
+        <button type="button" class="track-filter-tab active" data-kind="all">全部</button>
+        <button type="button" class="track-filter-tab" data-kind="original">原作</button>
+        <button type="button" class="track-filter-tab" data-kind="continue">续写</button>
+        <button type="button" class="track-filter-tab" data-kind="rewrite">改写</button>
+      </div>
+      <nav id="book-list" class="book-list" aria-label="书目"></nav>
+      <section id="toc-panel" class="toc-panel hidden">
+        <div class="toc-head">
+          <button type="button" id="btn-back" class="text-btn">← 书目</button>
+          <div id="toc-title" class="toc-book-title"></div>
+        </div>
+        <nav id="chapter-list" class="chapter-list" aria-label="目录"></nav>
+      </section>
+      <footer class="sidebar-foot">
+        <div class="pref-block">
+          <div class="theme-seg" role="group" aria-label="主题">
+            <button type="button" class="theme-opt" data-theme="light">日间</button>
+            <button type="button" class="theme-opt" data-theme="dark">夜间</button>
+          </div>
+        </div>
+        <div class="pref-block">
+          <div class="pref-label">字号 <span id="font-label">18</span></div>
+          <div class="font-row">
+            <button type="button" id="font-down" class="icon-btn">A−</button>
+            <button type="button" id="font-up" class="icon-btn">A+</button>
+          </div>
+        </div>
+      </footer>
+    </aside>
+    <main class="reader" id="reader">
+      <article id="article" class="article">
+        <p class="empty">选择左侧一本书。数据只读本地 <code>books/</code>。</p>
+      </article>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+type: original
+license: CC0-1.0
+trust: authored-for-demo
+note: Palimpsest 为演示流水线而写的短篇，非抓取。

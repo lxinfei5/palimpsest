@@ -1,0 +1,25 @@
+book_id: harbor-bell
+as_of_chapter: c004
+updated_at: 2026-08-12
+states:
+  - id: gu-qingtong
+    location: 灰屿灯塔堆房（刚从鹿回头返回）
+    inventory: [三代海图, 速写本, 炭笔]
+    injuries: []
+    knowledge: [见过铃上裂纹, 走过退潮路, 见过铁环与碎瓷]
+    emotional: 被证实一部分，仍缺名字
+    flags: [do-not-take-porcelain]
+  - id: shen-wanchao
+    location: 灯塔
+    inventory: [铃绳]
+    injuries: []
+    knowledge: [沉船与等人的船]
+    emotional: 允许她看一眼，仍封口
+    flags: [will-ask-her-to-leave]
+  - id: a-mai
+    location: 码头（c004 未出场）
+    inventory: []
+    injuries: []
+    knowledge: [祖父见过铁环]
+    emotional: unknown
+    flags: []

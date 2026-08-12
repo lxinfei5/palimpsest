@@ -1,0 +1,53 @@
+# 02_canon/characters/<slug>.yaml
+
+id: string
+name: string
+aliases: [string]
+tier: S|A|B|C
+summary: string
+
+identity:
+  gender: string|unknown
+  age: string|unknown
+  species_or_race: string|null
+  occupation: string|null
+  affiliation: [string]
+  location_home: string|null
+
+appearance: string
+personality:
+  traits: [string]
+  speech_style: string
+  values: [string]
+  flaws: [string]
+  taboo: [string]
+
+backstory: string
+goals:
+  short_term: [string]
+  long_term: [string]
+abilities: [string]
+relationships:
+  - target: string
+    type: string
+    note: string
+
+arc:
+  role_in_story: string
+  start_state: string
+  end_state_known: string|null
+
+voice_samples:
+  - quote: string
+    ref: string
+
+inferred: boolean
+evidence:
+  - ref: string                # c001 / full.md
+    quote: string
+    confidence: high|medium|low
+
+tags: [string]
+status: active|dead|missing|unknown
+last_updated: string
+notes: string

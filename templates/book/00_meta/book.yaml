@@ -1,0 +1,30 @@
+id: "{{BOOK_ID}}"
+title: "{{BOOK_TITLE}}"
+alt_titles: []
+language: zh-CN
+status: planned
+content_rating: unrated
+
+genre: []
+tags: []
+synopsis: ""
+
+source:
+  type: original
+  rights_note: "请人类自行确认版权边界。本仓库不收录未获授权的第三方全文。"
+  license: ""
+  files: []
+
+progress:
+  original_chapters: null
+  continue_from: null
+  rewrite_ranges: []
+
+defaults:
+  pov: "第三人称有限"
+  tense: "过去时/故事体"
+  target_chapter_words: 2500
+  style_notes: ""
+
+created_at: "{{CREATED_AT}}"
+updated_at: "{{CREATED_AT}}"

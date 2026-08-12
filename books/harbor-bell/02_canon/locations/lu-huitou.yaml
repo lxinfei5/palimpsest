@@ -1,0 +1,17 @@
+id: lu-huitou
+name: 鹿回头
+aliases: []
+kind: location
+summary: 退潮才露出的窄岛/沙脊，海图上时有时无。
+details: 泥可没膝；有拴船铁环。沈晚潮称岛不是给人住的。续写证实铁环与半截断绳、一块磨圆的青花碎瓷。
+related: [hui-yu]
+inferred: false
+evidence:
+  - ref: c001
+    quote: 三代图上，这儿有时叫鹿回头，有时什么都没有。
+    confidence: high
+  - ref: c004
+    quote: 岸边果然有一只铁环，锈成深褐色，环孔里卡着半截断绳。
+    confidence: high
+tags: [islet, tidal]
+last_updated: 2026-08-12

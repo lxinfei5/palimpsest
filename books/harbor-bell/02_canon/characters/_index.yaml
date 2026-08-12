@@ -1,0 +1,18 @@
+book_id: harbor-bell
+updated_at: 2026-08-12
+characters:
+  - id: gu-qingtong
+    name: 顾青桐
+    tier: S
+    file: gu-qingtong.yaml
+    summary: 制图员，来灰屿核对三代海图上时隐时现的「鹿回头」。
+  - id: shen-wanchao
+    name: 沈晚潮
+    tier: S
+    file: shen-wanchao.yaml
+    summary: 灰屿守灯人，雾来之前敲港铃，不愿谈岛。
+  - id: a-mai
+    name: 阿麦
+    tier: A
+    file: a-mai.yaml
+    summary: 码头少年，传话与送饭，祖父走过退潮路。

@@ -1,0 +1,7 @@
+# C 级路人合并于此，避免文件爆炸
+book_id: "{{BOOK_ID}}"
+updated_at: null
+extras: []
+  # - name: 店小二
+  #   note: 客栈一闪
+  #   refs: [c002]

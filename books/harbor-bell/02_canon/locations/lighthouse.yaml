@@ -1,0 +1,14 @@
+id: lighthouse
+name: 灰屿灯塔
+aliases: [灯塔]
+kind: location
+summary: 岬角上的旧白塔，沈晚潮居住与守铃处。有堆房可留客。
+details: 塔顶悬港铃。平台可站人敲铃。
+related: [harbor-bell, hui-yu]
+inferred: false
+evidence:
+  - ref: c001
+    quote: 灯塔立在岬角，白得发旧。
+    confidence: high
+tags: [lighthouse]
+last_updated: 2026-08-12

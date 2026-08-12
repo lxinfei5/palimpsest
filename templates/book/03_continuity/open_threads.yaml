@@ -1,0 +1,10 @@
+book_id: "{{BOOK_ID}}"
+updated_at: null
+threads: []
+  # - id: th-001
+  #   title: 线索名
+  #   status: open
+  #   planted_at: c001
+  #   payoff_at: null
+  #   summary: ""
+  #   must_keep_on_continue: true

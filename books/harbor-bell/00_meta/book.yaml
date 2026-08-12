@@ -1,0 +1,31 @@
+id: harbor-bell
+title: 港铃
+alt_titles: ["Harbor Bell"]
+language: zh-CN
+status: writing
+content_rating: sfw
+
+genre: [literary, coastal]
+tags: [lighthouse, fog, mapping, demo]
+synopsis: 雾季将至，制图员顾青桐抵达灰屿，想弄清海图上时隐时现的小岛。守灯人沈晚潮只在雾来时敲响那口有裂纹的铜铃。
+
+source:
+  type: original
+  rights_note: "Palimpsest 项目原创样例，可自由复制与改写。"
+  license: CC0-1.0
+  files:
+    - 01_sources/raw/harbor-bell.txt
+
+progress:
+  original_chapters: 3
+  continue_from: c003
+  rewrite_ranges: []
+
+defaults:
+  pov: 第三人称有限（顾青桐为主，沈晚潮偶有近距）
+  tense: 过去时/故事体
+  target_chapter_words: 900
+  style_notes: 短句与海雾意象；对话少而硬；少解释、多物件。
+
+created_at: 2026-08-12T00:00:00Z
+updated_at: 2026-08-12T00:00:00Z

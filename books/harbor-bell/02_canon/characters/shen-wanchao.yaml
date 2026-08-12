@@ -1,0 +1,64 @@
+id: shen-wanchao
+name: 沈晚潮
+aliases: [沈叔]
+tier: S
+summary: 灯塔守灯人，补网、敲铃，少言。认为裂铃才安全。
+
+identity:
+  gender: 男
+  age: unknown
+  species_or_race: human
+  occupation: 守灯人
+  affiliation: []
+  location_home: 灰屿灯塔
+
+appearance: 常坐门槛补网；敲铃时赤一只脚。
+personality:
+  traits: [寡言, 守规矩, 拒谈岛]
+  speech_style: 短句，否定多过解释。
+  values: [铃先于雾, 岛不给人住]
+  flaws: [把记忆压在铃绳里]
+  taboo: [不讲岛的细节, 不让人随便摸铃]
+
+backstory: 知晓某次沉船，并与「等人回来的船」有关（续写 c004 补充）。
+goals:
+  short_term: [让顾青桐看完就走]
+  long_term: [守住铃与岸的距离]
+abilities: [凭雾敲铃, 走退潮泥路]
+relationships:
+  - target: gu-qingtong
+    type: 收留但设限
+    note: 给堆房，禁止摸铃，答应带她退潮看岛
+  - target: a-mai
+    type: 岛上长辈
+    note: 被阿麦称为沈叔
+
+arc:
+  role_in_story: 守门人 / 记忆持有者
+  start_state: 拒人于门槛
+  end_state_known: 原作答应退潮带路
+
+voice_samples:
+  - quote: 「客房没有。堆房可以。」
+    ref: c001
+  - quote: 「退潮才有路。涨潮就是海。」
+    ref: c001
+  - quote: 「裂了才准。整的太亮，船会以为岸很近。」
+    ref: c003
+
+inferred: false
+evidence:
+  - ref: c001
+    quote: 沈晚潮坐在门槛上补网
+    confidence: high
+  - ref: c002
+    quote: 「它记得上次沉船。」
+    confidence: high
+  - ref: c003
+    quote: 「退潮跟我走。看完你就走。岛不是给人住的。」
+    confidence: high
+
+tags: [keeper, lighthouse]
+status: active
+last_updated: 2026-08-12
+notes: ""

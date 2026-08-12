@@ -1,0 +1,59 @@
+id: gu-qingtong
+name: 顾青桐
+aliases: []
+tier: S
+summary: 外来制图员，带着三代海图来灰屿，想确认「鹿回头」是否存在。
+
+identity:
+  gender: 女
+  age: 约三十
+  species_or_race: human
+  occupation: 制图员
+  affiliation: []
+  location_home: null
+
+appearance: 文中未细写外貌；常夹着卷好的海图，穿靴。
+personality:
+  traits: [执拗, 观察细致, 少客套]
+  speech_style: 短问句，把判断留给笔记。
+  values: [把空白画清楚]
+  flaws: [会逼问别人不愿说的事]
+  taboo: []
+
+backstory: 祖父图用朱砂圈过鹿回头，父亲图只剩虚线，她从港口衙门抄来的新图将该处抹净。
+goals:
+  short_term: [核实鹿回头, 记录铜铃与雾的关系]
+  long_term: [完成一张不再被潮水改写的图]
+abilities: [对照旧图, 现场速写]
+relationships:
+  - target: shen-wanchao
+    type: 借住 / 对质
+    note: 住堆房，追问岛与沉船
+  - target: a-mai
+    type: 向导式闲谈
+    note: 从阿麦处得知沈叔规矩与祖父退潮路
+
+arc:
+  role_in_story: 视角主角 / 外来提问者
+  start_state: 刚下船，只信图
+  end_state_known: 原作止于获准随沈晚潮退潮看岛
+
+voice_samples:
+  - quote: 「雾还没来。」
+    ref: c001
+  - quote: 「我来画岛。」
+    ref: c001
+
+inferred: true
+evidence:
+  - ref: c001
+    quote: 「我来画岛。」她把旧海图摊开……「三代图上，这儿有时叫鹿回头，有时什么都没有。」
+    confidence: high
+  - ref: c002
+    quote: 祖父那一代用朱砂圈过「鹿回头」；父亲那一代只剩虚线
+    confidence: high
+
+tags: [protagonist, mapper]
+status: active
+last_updated: 2026-08-12
+notes: 年龄为推断，原文未给数字。

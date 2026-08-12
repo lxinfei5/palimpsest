@@ -1,0 +1,20 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+*.bak
+*.tmp
+
+# local agent locks
+books/*/_agent/locks
+
+# local reference checkouts (not part of the published tree)
+refs/novel-lab/
+refs/silly-tavern/

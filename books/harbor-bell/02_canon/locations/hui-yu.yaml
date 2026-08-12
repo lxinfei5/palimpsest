@@ -1,0 +1,14 @@
+id: hui-yu
+name: 灰屿
+aliases: []
+kind: location
+summary: 雾季明显的沿海小岛，有码头、岬角灯塔。
+details: 渡船末班靠岸时码头只剩半截潮线。
+related: [lighthouse, lu-huitou]
+inferred: false
+evidence:
+  - ref: c001
+    quote: 最后一班渡船靠岸时，灰屿的码头只剩半截潮线。
+    confidence: high
+tags: [island]
+last_updated: 2026-08-12

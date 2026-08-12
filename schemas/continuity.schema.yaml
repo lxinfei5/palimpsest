@@ -1,0 +1,22 @@
+# 03_continuity/open_threads.yaml
+book_id: string
+updated_at: string|null
+threads:
+  - id: string                 # th-001
+    title: string
+    status: open|paid-off|abandoned
+    planted_at: string         # c001
+    payoff_at: string|null
+    summary: string
+    must_keep_on_continue: boolean
+
+# 03_continuity/character_states.yaml
+# book_id / as_of_chapter / updated_at
+states:
+  - id: string                 # character id
+    location: string|null
+    inventory: [string]
+    injuries: [string]
+    knowledge: [string]
+    emotional: string
+    flags: [string]

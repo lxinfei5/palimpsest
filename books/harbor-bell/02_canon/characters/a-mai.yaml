@@ -1,0 +1,57 @@
+id: a-mai
+name: 阿麦
+aliases: []
+tier: A
+summary: 码头少年，扛干鱼、送煎鱼，转述沈叔规矩与祖父的退潮记忆。
+
+identity:
+  gender: 男
+  age: 少年
+  species_or_race: human
+  occupation: 码头帮工
+  affiliation: []
+  location_home: 灰屿码头
+
+appearance: 肩上常有鱼筐。
+personality:
+  traits: [热心, 碎嘴但不越界]
+  speech_style: 口语，爱转述大人的规矩。
+  values: []
+  flaws: []
+  taboo: []
+
+backstory: 祖父走过鹿回头的泥路，见过拴船铁环。
+goals:
+  short_term: []
+  long_term: []
+abilities: []
+relationships:
+  - target: shen-wanchao
+    type: 晚辈
+    note: 称沈叔
+  - target: gu-qingtong
+    type: 信息源
+    note: 告诉她铃与雾的顺序
+
+arc:
+  role_in_story: 信使 / 地方记忆的浅层
+  start_state: 卸货
+  end_state_known: 原作后未再出场
+
+voice_samples:
+  - quote: 「铃先响，雾后到。沈叔的规矩。」
+    ref: c001
+
+inferred: false
+evidence:
+  - ref: c001
+    quote: 少年叫阿麦，肩上扛着一筐干鱼。
+    confidence: high
+  - ref: c002
+    quote: 「我爷爷走过。泥一直没过膝盖，远处有个铁环，拴船的。」
+    confidence: high
+
+tags: [dock]
+status: active
+last_updated: 2026-08-12
+notes: ""
