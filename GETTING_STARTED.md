@@ -1,5 +1,7 @@
 # 30 秒上手
 
+先读根目录 [`README.md`](./README.md) 的主张与架构铁则。下面只讲怎么跑。
+
 ```bash
 cd palimpsest
 python3 -m venv .venv
