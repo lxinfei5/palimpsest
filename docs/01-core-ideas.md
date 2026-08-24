@@ -1,6 +1,6 @@
 # 参考材料核心思想（可开源抽取）
 
-> 服务于产品：**Palimpsest · 叠简**（方向 A：Agent-native 书稿仓库）  
+> 服务于产品：**Palimpsest · 叠简**（宗旨见 [`00-purpose.md`](./00-purpose.md)；方向 A：Agent-native 书稿仓库）  
 > 来源：`novel-lab`（小说设定/续写工作区）+ `silly-tavern`（LLM 对话前端，俗称「酒馆」）  
 > 原则：只抽取**架构与工作流思想**；剔除版权原文、成人内容库、定向站点抓取脚本、私有会话数据。
 

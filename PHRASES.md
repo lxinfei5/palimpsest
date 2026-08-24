@@ -1,6 +1,6 @@
 # 对 Agent 怎么说（复制即用）
 
-工作区根目录：本仓库。先读 `AGENTS.md`。
+工作区根目录：本仓库。先读 `AGENTS.md`（宗旨与铁则）和 `docs/00-purpose.md`。
 
 ---
 

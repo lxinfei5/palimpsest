@@ -1,6 +1,6 @@
 # 30 秒上手
 
-先读根目录 [`README.md`](./README.md) 的主张与架构铁则。下面只讲怎么跑。
+先读根目录 [`README.md`](./README.md) 的宗旨与架构铁则（推理：[docs/00-purpose.md](./docs/00-purpose.md)）。下面只讲怎么跑。
 
 ```bash
 cd palimpsest
