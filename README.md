@@ -5,6 +5,22 @@
 [![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](./LICENSE)
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-lxinfei5.win%2Fpalimpsest-8A2BE2.svg?logo=cloudflare)](https://lxinfei5.win/palimpsest/)
+
+---
+
+## 🌐 在线实时体验 (Live Demo)
+
+无需本地安装，直接在浏览器中体验 Palimpsest 全功能小说工程工作台：
+
+🔗 **[https://lxinfei5.win/palimpsest/](https://lxinfei5.win/palimpsest/)**
+
+> 💡 **演示亮点**：
+> - 📖 **正文分册阅读**：原作 (original) / 续写 (continue) 物理分卷隔离，夜间 / 日间 / 古籍羊皮纸 (Parchment) 沉浸排版。
+> - 👥 **正典百科与证据链**：S/A/B 角色卡与**原文精确短引（Evidence quote & ref）**。
+> - 🧭 **状态与伏笔监控**：角色此刻动态状态矩阵 (`character_states`) 与未收束伏笔追踪 (`open_threads`)。
+> - 🛡️ **一键门禁审计**：在线运行 `Quality` 续写门禁、`Check` 静态防人名漂移扫描、`Validate` 目录合规校验。
+> - ⚡ **上下文装配与导出**：滑块动态设定 Token/字符预算装配 Prompt，一键下载 EPUB 与 SillyTavern 酒馆世界书。
 
 ---
 
@@ -65,7 +81,7 @@ books/<book-id>/
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/palimpsest.git
+git clone https://github.com/lxinfei5/palimpsest.git
 cd palimpsest
 
 # 创建虚拟环境并安装核心依赖
