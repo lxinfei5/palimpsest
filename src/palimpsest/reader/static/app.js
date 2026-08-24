@@ -24,6 +24,11 @@
   };
 
   // Utilities
+  function apiUrl(endpoint) {
+    const base = window.location.pathname.replace(/\/index\.html$/i, "").replace(/\/$/, "");
+    return `${base}${endpoint.startsWith("/") ? endpoint : "/" + endpoint}`;
+  }
+
   function escapeHtml(s) {
     if (s == null) return "";
     return String(s)
@@ -130,7 +135,7 @@
   // Data Fetching
   async function loadBooks(selectBookId = null) {
     try {
-      const res = await fetch("/api/books");
+      const res = await fetch(apiUrl("/api/books"));
       const data = await res.json();
       state.books = data.books || [];
 
@@ -157,12 +162,12 @@
     try {
       // Parallel fetch all data for selected book
       const [overviewRes, tocRes, canonRes, contRes, outlineRes, sessRes] = await Promise.all([
-        fetch(`/api/books/${encodeURIComponent(bookId)}/overview`).then((r) => r.json()),
-        fetch(`/api/books/${encodeURIComponent(bookId)}/toc`).then((r) => r.json()),
-        fetch(`/api/books/${encodeURIComponent(bookId)}/canon`).then((r) => r.json()),
-        fetch(`/api/books/${encodeURIComponent(bookId)}/continuity`).then((r) => r.json()),
-        fetch(`/api/books/${encodeURIComponent(bookId)}/outline`).then((r) => r.json()),
-        fetch(`/api/books/${encodeURIComponent(bookId)}/sessions`).then((r) => r.json()),
+        fetch(apiUrl(`/api/books/${encodeURIComponent(bookId)}/overview`)).then((r) => r.json()),
+        fetch(apiUrl(`/api/books/${encodeURIComponent(bookId)}/toc`)).then((r) => r.json()),
+        fetch(apiUrl(`/api/books/${encodeURIComponent(bookId)}/canon`)).then((r) => r.json()),
+        fetch(apiUrl(`/api/books/${encodeURIComponent(bookId)}/continuity`)).then((r) => r.json()),
+        fetch(apiUrl(`/api/books/${encodeURIComponent(bookId)}/outline`)).then((r) => r.json()),
+        fetch(apiUrl(`/api/books/${encodeURIComponent(bookId)}/sessions`)).then((r) => r.json()),
       ]);
 
       state.overview = overviewRes;
@@ -268,7 +273,7 @@
       state.activeChapter = { volumeId, file: filename };
       renderManuscriptTree();
 
-      const res = await fetch(`/api/books/${encodeURIComponent(state.bookId)}/chapters/${encodeURIComponent(volumeId)}/${encodeURIComponent(filename)}`);
+      const res = await fetch(apiUrl(`/api/books/${encodeURIComponent(state.bookId)}/chapters/${encodeURIComponent(volumeId)}/${encodeURIComponent(filename)}`));
       const data = await res.json();
 
       const metaBanner = $("#article-meta-banner");
@@ -436,7 +441,7 @@
     const panel = $("#audit-results-panel");
     panel.innerHTML = '<div class="empty-state">⏳ 正在执行续写/改写质量门禁检查...</div>';
     try {
-      const res = await fetch(`/api/books/${encodeURIComponent(state.bookId)}/quality`);
+      const res = await fetch(apiUrl(`/api/books/${encodeURIComponent(state.bookId)}/quality`));
       const data = await res.json();
       const statusClass = data.ok ? "banner-pass" : "banner-fail";
       const icon = data.ok ? "✅" : "❌";
@@ -459,7 +464,7 @@
     const panel = $("#audit-results-panel");
     panel.innerHTML = '<div class="empty-state">⏳ 正在执行静态文本一致性与人名漂移检测...</div>';
     try {
-      const res = await fetch(`/api/books/${encodeURIComponent(state.bookId)}/check`);
+      const res = await fetch(apiUrl(`/api/books/${encodeURIComponent(state.bookId)}/check`));
       const data = await res.json();
       const statusClass = data.ok ? (data.warnings && data.warnings.length ? "banner-warning" : "banner-pass") : "banner-fail";
       const icon = data.ok ? (data.warnings && data.warnings.length ? "⚠️" : "✅") : "❌";
@@ -482,7 +487,7 @@
     const panel = $("#audit-results-panel");
     panel.innerHTML = '<div class="empty-state">⏳ 正在校验目录规范与 Schema 合规性...</div>';
     try {
-      const res = await fetch(`/api/books/${encodeURIComponent(state.bookId)}/validate`);
+      const res = await fetch(apiUrl(`/api/books/${encodeURIComponent(state.bookId)}/validate`));
       const data = await res.json();
       const statusClass = data.ok ? "banner-pass" : "banner-fail";
       const icon = data.ok ? "✅" : "❌";
@@ -520,7 +525,7 @@
     $("#context-output").textContent = "⏳ 正在按 AGENTS §8 优先级装配上下文...";
 
     try {
-      const res = await fetch(`/api/books/${encodeURIComponent(state.bookId)}/context?chapter=${encodeURIComponent(chap)}&max_chars=${encodeURIComponent(maxChars)}`);
+      const res = await fetch(apiUrl(`/api/books/${encodeURIComponent(state.bookId)}/context?chapter=${encodeURIComponent(chap)}&max_chars=${encodeURIComponent(maxChars)}`));
       const data = await res.json();
 
       $("#context-stats-badge").textContent = `${data.chars || 0} 字符 / ${data.lines || 0} 行`;
@@ -546,12 +551,12 @@
 
   function downloadEpub() {
     const vol = $("#export-epub-vol").value || "original";
-    window.location.href = `/api/download/${encodeURIComponent(state.bookId)}/epub/${encodeURIComponent(vol)}`;
+    window.location.href = apiUrl(`/api/download/${encodeURIComponent(state.bookId)}/epub/${encodeURIComponent(vol)}`);
     showToast("正在开始下载 EPUB...");
   }
 
   function downloadSt(type) {
-    window.location.href = `/api/download/${encodeURIComponent(state.bookId)}/st/${encodeURIComponent(type)}`;
+    window.location.href = apiUrl(`/api/download/${encodeURIComponent(state.bookId)}/st/${encodeURIComponent(type)}`);
     showToast(`正在开始下载 SillyTavern ${type} 资产...`);
   }
 
@@ -668,7 +673,7 @@
       if (!id) return;
 
       try {
-        const res = await fetch("/api/books", {
+        const res = await fetch(apiUrl("/api/books"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id, title }),
