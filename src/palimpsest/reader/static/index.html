@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Palimpsest · 叠简</title>
+  <title>Palimpsest · 叠简 — 小说工程工作台</title>
   <link rel="stylesheet" href="/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>" />
   <script>
@@ -12,61 +12,287 @@
         var t = localStorage.getItem("ps-theme") || "dark";
         document.documentElement.dataset.theme = t;
         if (t === "light") document.documentElement.classList.add("light");
+        if (t === "parchment") document.documentElement.classList.add("parchment");
       } catch (e) {}
     })();
   </script>
 </head>
 <body>
-  <div id="app">
-    <aside class="sidebar" id="sidebar">
-      <header class="sidebar-head">
+  <div id="app" class="app-layout">
+    <!-- Top Header -->
+    <header class="topbar">
+      <div class="topbar-left">
         <div class="brand">
           <span class="brand-mark" aria-hidden="true">叠</span>
-          <div>
-            <div class="brand-title">Palimpsest</div>
-            <div class="brand-sub">叠简 · 本地阅读</div>
+          <div class="brand-text">
+            <span class="brand-title">Palimpsest</span>
+            <span class="brand-badge">v0.2.0</span>
           </div>
         </div>
-        <button type="button" id="btn-refresh" class="icon-btn" title="刷新">↻</button>
-      </header>
-      <div class="search-wrap">
-        <input id="book-search" type="search" placeholder="搜索书名…" autocomplete="off" />
-      </div>
-      <div class="track-filter-tabs" role="tablist" aria-label="分册类型">
-        <button type="button" class="track-filter-tab active" data-kind="all">全部</button>
-        <button type="button" class="track-filter-tab" data-kind="original">原作</button>
-        <button type="button" class="track-filter-tab" data-kind="continue">续写</button>
-        <button type="button" class="track-filter-tab" data-kind="rewrite">改写</button>
-      </div>
-      <nav id="book-list" class="book-list" aria-label="书目"></nav>
-      <section id="toc-panel" class="toc-panel hidden">
-        <div class="toc-head">
-          <button type="button" id="btn-back" class="text-btn">← 书目</button>
-          <div id="toc-title" class="toc-book-title"></div>
+        <div class="book-picker-wrap">
+          <label for="book-select" class="sr-only">选择书目</label>
+          <select id="book-select" class="book-select" title="切换书目"></select>
+          <button type="button" id="btn-open-new-book" class="btn btn-sm btn-primary" title="新建一本小说工程">+ 新建书目</button>
         </div>
-        <nav id="chapter-list" class="chapter-list" aria-label="目录"></nav>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="main-tabs" role="tablist" aria-label="工作台视图">
+        <button type="button" class="tab-btn active" data-tab="manuscript">📖 正文分册</button>
+        <button type="button" class="tab-btn" data-tab="canon">👥 正典百科</button>
+        <button type="button" class="tab-btn" data-tab="continuity">🧭 状态与伏笔</button>
+        <button type="button" class="tab-btn" data-tab="outline">📑 任务大纲</button>
+        <button type="button" class="tab-btn" data-tab="audit">🛡️ 质量门禁</button>
+        <button type="button" class="tab-btn" data-tab="context">⚡ 上下文装配</button>
+        <button type="button" class="tab-btn" data-tab="export">📦 资产导出</button>
+        <button type="button" class="tab-btn" data-tab="sessions">📝 会话审计</button>
+      </nav>
+
+      <div class="topbar-right">
+        <button type="button" id="btn-refresh" class="icon-btn" title="刷新数据">↻</button>
+        <div class="theme-seg" role="group" aria-label="主题">
+          <button type="button" class="theme-opt" data-theme="dark" title="夜间模式">🌙</button>
+          <button type="button" class="theme-opt" data-theme="light" title="日间模式">☀️</button>
+          <button type="button" class="theme-opt" data-theme="parchment" title="古籍羊皮纸">📜</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sub-header quick stats strip -->
+    <div id="stats-strip" class="stats-strip">
+      <div class="stat-item"><span class="stat-label">书名：</span><strong id="strip-title">-</strong></div>
+      <div class="stat-item"><span class="stat-label">状态：</span><span id="strip-status" class="badge badge-subtle">-</span></div>
+      <div class="stat-item"><span class="stat-label">字数规模：</span><span id="strip-chars">0 字</span></div>
+      <div class="stat-item"><span class="stat-label">正典卡片：</span><span id="strip-canon">0 实体</span></div>
+      <div class="stat-item"><span class="stat-label">活跃伏笔：</span><span id="strip-threads">0 条</span></div>
+      <div class="stat-item safe-pill">🔒 文件夹唯一真源 · L0~L3分级隔离</div>
+    </div>
+
+    <!-- Main Workspace Container -->
+    <main class="workbench-body">
+      <!-- 1. Manuscript Tab -->
+      <section id="view-manuscript" class="tab-view active">
+        <aside class="manuscript-sidebar">
+          <div class="sidebar-search">
+            <input id="chapter-search" type="search" placeholder="搜索章节…" autocomplete="off" />
+          </div>
+          <div class="vol-filter-pills" role="tablist">
+            <button type="button" class="pill-btn active" data-kind="all">全部</button>
+            <button type="button" class="pill-btn" data-kind="original">原作</button>
+            <button type="button" class="pill-btn" data-kind="continue">续写</button>
+            <button type="button" class="pill-btn" data-kind="rewrite">改写</button>
+          </div>
+          <nav id="chapter-tree" class="chapter-tree" aria-label="章节树"></nav>
+          <div class="reader-settings">
+            <span class="setting-label">字号 <span id="font-size-val">18</span>px</span>
+            <div class="btn-group">
+              <button type="button" id="btn-font-dec" class="btn btn-xs">A−</button>
+              <button type="button" id="btn-font-inc" class="btn btn-xs">A+</button>
+            </div>
+          </div>
+        </aside>
+        <div class="manuscript-content" id="reader-pane">
+          <div id="article-meta-banner" class="article-meta-banner hidden"></div>
+          <article id="article-body" class="article-body">
+            <div class="empty-state">
+              <div class="empty-icon">📖</div>
+              <h3>选择左侧章节开始阅读</h3>
+              <p>Palimpsest 保证原作与续写/改写分册存放，物理隔离，不被覆写。</p>
+            </div>
+          </article>
+        </div>
       </section>
-      <footer class="sidebar-foot">
-        <div class="pref-block">
-          <div class="theme-seg" role="group" aria-label="主题">
-            <button type="button" class="theme-opt" data-theme="light">日间</button>
-            <button type="button" class="theme-opt" data-theme="dark">夜间</button>
+
+      <!-- 2. Canon Tab -->
+      <section id="view-canon" class="tab-view">
+        <div class="canon-container">
+          <nav class="sub-nav-pills" id="canon-nav">
+            <button type="button" class="sub-pill active" data-canon="characters">🎭 核心角色</button>
+            <button type="button" class="sub-pill" data-canon="locations">🗺️ 地理地点</button>
+            <button type="button" class="sub-pill" data-canon="rules">📜 规则设定</button>
+            <button type="button" class="sub-pill" data-canon="items">💎 关键物品</button>
+            <button type="button" class="sub-pill" data-canon="factions">🏛️ 势力组织</button>
+            <button type="button" class="sub-pill" data-canon="timeline">⏳ 时间线</button>
+            <button type="button" class="sub-pill" data-canon="glossary">📖 术语表</button>
+            <button type="button" class="sub-pill" data-canon="relationships">🕸️ 关系图谱</button>
+          </nav>
+          <div id="canon-content" class="canon-content"></div>
+        </div>
+      </section>
+
+      <!-- 3. Continuity Tab -->
+      <section id="view-continuity" class="tab-view">
+        <div class="continuity-container">
+          <div class="continuity-header">
+            <h3>人物当前动态状态 (<code id="cstate-asof">as_of_chapter: -</code>)</h3>
+            <p class="section-desc">正典（静态历史事实）与状态（此刻动态）物理分家。续写/改写后需动态追踪人物位置与心境。</p>
+          </div>
+          <div id="character-states-grid" class="cards-grid"></div>
+
+          <div class="continuity-header mt-8">
+            <h3>未闭合伏笔追踪 (Open Threads)</h3>
+            <p class="section-desc">已标记 <code>must_keep_on_continue: true</code> 的伏笔，在续写时会被静态门禁重点监控。</p>
+          </div>
+          <div id="open-threads-table-wrap" class="table-card"></div>
+
+          <div class="continuity-header mt-8">
+            <h3>设定矛盾与冲突备忘 (Conflicts)</h3>
+          </div>
+          <div id="conflicts-card" class="doc-card"></div>
+        </div>
+      </section>
+
+      <!-- 4. Outline Tab -->
+      <section id="view-outline" class="tab-view">
+        <div class="outline-container">
+          <div class="outline-sidebar">
+            <nav id="outline-file-list" class="doc-tree"></nav>
+          </div>
+          <div class="outline-content" id="outline-doc-view">
+            <div class="empty-state">
+              <div class="empty-icon">📑</div>
+              <h3>选择左侧大纲或任务书</h3>
+              <p>查看 <code>continue_brief.md</code> 与 <code>rewrite_brief.md</code> 的目标字数与创作指引。</p>
+            </div>
           </div>
         </div>
-        <div class="pref-block">
-          <div class="pref-label">字号 <span id="font-label">18</span></div>
-          <div class="font-row">
-            <button type="button" id="font-down" class="icon-btn">A−</button>
-            <button type="button" id="font-up" class="icon-btn">A+</button>
+      </section>
+
+      <!-- 5. Audit & Quality Tab -->
+      <section id="view-audit" class="tab-view">
+        <div class="audit-container">
+          <div class="audit-toolbar">
+            <div class="toolbar-title">
+              <h3>工程质量门禁与一致性审计</h3>
+              <p class="section-desc">确定性归代码，创造力归模型。利用本地规则对正文进行毫秒级合规检验。</p>
+            </div>
+            <div class="toolbar-actions">
+              <button type="button" id="btn-run-quality" class="btn btn-primary">⚡ 运行质量门禁 (Quality)</button>
+              <button type="button" id="btn-run-check" class="btn btn-secondary">🔍 运行一致性检查 (Check)</button>
+              <button type="button" id="btn-run-validate" class="btn btn-secondary">📐 校验目录规范 (Validate)</button>
+            </div>
+          </div>
+          <div id="audit-results-panel" class="audit-results-panel">
+            <div class="empty-state">
+              <div class="empty-icon">🛡️</div>
+              <h3>点击上方按钮发起快速审计</h3>
+              <p>将检查 front matter 标识、字数偏离度、未入典人名漂移、未回收核心伏笔与会话日志。</p>
+            </div>
           </div>
         </div>
-      </footer>
-    </aside>
-    <main class="reader" id="reader">
-      <article id="article" class="article">
-        <p class="empty">选择左侧一本书。数据只读本地 <code>books/</code>。</p>
-      </article>
+      </section>
+
+      <!-- 6. Context Packer Tab -->
+      <section id="view-context" class="tab-view">
+        <div class="context-container">
+          <div class="context-controls card">
+            <div class="context-form-row">
+              <div class="form-group">
+                <label for="context-chapter-select">聚焦章节 (Focus Chapter)：</label>
+                <select id="context-chapter-select" class="form-control"></select>
+              </div>
+              <div class="form-group flex-1">
+                <label for="context-max-chars">字符预算上限 (Max Chars): <strong id="max-chars-display">8000</strong></label>
+                <input type="range" id="context-max-chars" min="2000" max="32000" step="500" value="8000" class="form-range" />
+              </div>
+              <div class="form-group align-end">
+                <button type="button" id="btn-gen-context" class="btn btn-primary">⚡ 装配上下文包</button>
+              </div>
+            </div>
+            <div class="priority-badges-row">
+              <span class="p-badge p1">P1 System</span>
+              <span class="p-badge p2">P2 Brief</span>
+              <span class="p-badge p3">P3 S/A角色+状态</span>
+              <span class="p-badge p4">P4 地点/规则/物品</span>
+              <span class="p-badge p5">P5 伏笔</span>
+              <span class="p-badge p6">P6 近文1-3章</span>
+              <span class="p-badge p7">P7 检索切片</span>
+            </div>
+          </div>
+
+          <div class="context-output-wrap">
+            <div class="output-head">
+              <div id="context-stats-badge" class="stats-badge">准备就绪</div>
+              <button type="button" id="btn-copy-context" class="btn btn-sm btn-outline">📋 一键复制 Context Pack</button>
+            </div>
+            <pre id="context-output" class="code-box">点击“装配上下文包”生成供 Coding Agent 使用的标准提示词包。</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Export Tab -->
+      <section id="view-export" class="tab-view">
+        <div class="export-container">
+          <div class="export-grid">
+            <div class="export-card">
+              <div class="export-icon">📚</div>
+              <h3>EPUB 标准电子书</h3>
+              <p>打包指定分册为标准的 `.epub` 文件，支持直接传输至 Kindle、微信读书、Apple Books 等阅读器。</p>
+              <div class="export-actions">
+                <select id="export-epub-vol" class="form-control mb-3"></select>
+                <button type="button" id="btn-export-epub" class="btn btn-primary btn-block">一键导出并下载 EPUB</button>
+              </div>
+            </div>
+
+            <div class="export-card">
+              <div class="export-icon">🍷</div>
+              <h3>SillyTavern (酒馆) 资产</h3>
+              <p>将正典设定转换为酒馆 World Info 世界书 JSON，将系统人设编译为 chara_card_v2 写作卡。</p>
+              <div class="export-actions">
+                <div class="btn-group-stacked">
+                  <button type="button" id="btn-export-st-lore" class="btn btn-secondary mb-2">下载世界书 (harbor-bell-lore.json)</button>
+                  <button type="button" id="btn-export-st-writer" class="btn btn-secondary">下载写作卡 (harbor-bell-writer.json)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Sessions Tab -->
+      <section id="view-sessions" class="tab-view">
+        <div class="outline-container">
+          <div class="outline-sidebar">
+            <nav id="sessions-file-list" class="doc-tree"></nav>
+          </div>
+          <div class="outline-content" id="session-doc-view">
+            <div class="empty-state">
+              <div class="empty-icon">📝</div>
+              <h3>选择左侧会话日志</h3>
+              <p>查看历次 Agent 任务记录（Input / Actions / Open questions）。</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!-- New Book Modal -->
+    <div id="new-book-modal" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>新建小说工程 (palimpsest new)</h3>
+          <button type="button" id="btn-close-modal" class="close-btn">&times;</button>
+        </div>
+        <form id="new-book-form">
+          <div class="form-group mb-3">
+            <label for="new-book-id">书目 ID (Book ID，仅限小写字母/数字/连字符)：</label>
+            <input type="text" id="new-book-id" class="form-control" placeholder="如 my-xianxia-novel" required pattern="^[a-z0-9]+(-[a-z0-9]+)*$" />
+            <small class="form-hint">对应 <code>books/&lt;book-id&gt;/</code> 目录名</small>
+          </div>
+          <div class="form-group mb-4">
+            <label for="new-book-title">展示书名 (Display Title)：</label>
+            <input type="text" id="new-book-title" class="form-control" placeholder="如 我的修仙传" required />
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-cancel-modal" class="btn btn-outline">取消</button>
+            <button type="submit" class="btn btn-primary">立即创建</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast message -->
+    <div id="toast" class="toast hidden"></div>
   </div>
   <script src="/app.js"></script>
 </body>

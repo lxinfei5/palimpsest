@@ -16,8 +16,9 @@ python3 -m venv .venv
 .venv/bin/palimpsest export st harbor-bell
 .venv/bin/palimpsest export epub harbor-bell --volume original
 
-# 本地阅读
-.venv/bin/palimpsest serve
+# 本地可视化工作台（Web GUI）
+.venv/bin/palimpsest gui
+# 或纯阅读器：.venv/bin/palimpsest serve
 # 打开 http://127.0.0.1:8765/
 ```
 

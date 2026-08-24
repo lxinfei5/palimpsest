@@ -64,7 +64,12 @@ def cmd_path(args: argparse.Namespace) -> int:
 def cmd_serve(args: argparse.Namespace) -> int:
     from palimpsest.reader.server import serve
 
-    serve(_root(args), host=args.host, port=args.port)
+    serve(
+        _root(args),
+        host=args.host,
+        port=args.port,
+        open_browser=getattr(args, "open_browser", False),
+    )
     return 0
 
 
@@ -93,10 +98,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_path.add_argument("book_id")
     p_path.set_defaults(func=cmd_path)
 
-    p_serve = sub.add_parser("serve", help="local manuscript reader")
+    p_serve = sub.add_parser("serve", help="local manuscript reader and workbench")
     p_serve.add_argument("--host", default="127.0.0.1")
     p_serve.add_argument("--port", type=int, default=8765)
+    p_serve.add_argument("--open", dest="open_browser", action="store_true", help="open in default browser")
     p_serve.set_defaults(func=cmd_serve)
+
+    p_gui = sub.add_parser("gui", help="launch local web GUI workbench")
+    p_gui.add_argument("--host", default="127.0.0.1")
+    p_gui.add_argument("--port", type=int, default=8765)
+    p_gui.add_argument("--no-open", dest="open_browser", action="store_false", default=True, help="do not auto-open browser")
+    p_gui.set_defaults(func=cmd_serve)
 
     register_commands(sub)
     return parser

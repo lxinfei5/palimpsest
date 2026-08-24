@@ -1,0 +1,11 @@
+services:
+  palimpsest:
+    build: .
+    container_name: palimpsest-demo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8765:8765"
+    volumes:
+      - ./books:/app/books
+    environment:
+      - PYTHONUNBUFFERED=1

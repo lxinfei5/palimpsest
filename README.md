@@ -94,9 +94,10 @@ palimpsest check harbor-bell
 # 为特定章节按优先级装配上下文
 palimpsest context harbor-bell --chapter c004 --max-chars 4000
 
-# 启动本地只读 Web 阅读器
-palimpsest serve
-# 打开浏览器访问 http://127.0.0.1:8765/
+# 启动本地可视化工作台（Web GUI，自动打开浏览器）
+palimpsest gui
+# 或使用阅读服务：palimpsest serve
+# 浏览器访问 http://127.0.0.1:8765/
 ```
 
 ### 3. 创建你的第一本书
@@ -160,6 +161,80 @@ pytest tests/test_quality.py -v
 - **添加自定义校验规则**：可在 [`src/palimpsest/check.py`](./src/palimpsest/check.py) 中增加新的文本一致性静态分析逻辑（如时间线跳跃检测、阵营冲突检测）。
 - **新增导出格式**：在 [`src/palimpsest/export/`](./src/palimpsest/export/) 下实现新的导出生成器，并在 [`cli.py`](./src/palimpsest/cli.py) 的 `export` 命令组中注册子命令。
 - **自定义 Schema**：在 [`schemas/`](./schemas/) 目录下维护各实体的 YAML Schema，修改后更新 `validate.py`。
+
+---
+
+## 🌐 生产与 Demo 部署指南（以 lxinfei5.win + Cloudflare 为例）
+
+Palimpsest Web 工作台采用零额外外部重型依赖设计，后端仅依赖 Python 3.10+ 标准库与 pyyaml，可快速安全部署为在线演示站点。
+
+### 1. 安全基线原则
+
+- 🔒 **永远只监听本地回环**：`palimpsest serve` 默认仅监听 `127.0.0.1:8765`，**绝不可直接暴露原生 HTTP 端口到公网**。
+- 🛡️ **反向代理与 Cloudflare WAF**：前端由 Nginx / Caddy 进行反向代理，并通过 Cloudflare CDN 代理回源，启用 SSL/TLS、防 DDoS 与防扫描。
+- 👤 **最小权限运行**：使用非 root 专用用户（如 `palimpsest` 或容器隔离环境）运行应用。
+
+---
+
+### 2. 方式 A：Docker Compose 极简一键部署（推荐）
+
+仓库已内置生产就绪的 [`Dockerfile`](./Dockerfile) 与 [`docker-compose.yml`](./docker-compose.yml)：
+
+```bash
+# 1. 在服务器上克隆仓库
+git clone https://github.com/lxinfei5/palimpsest.git
+cd palimpsest
+
+# 2. 启动容器（自动构建、仅绑定本地 127.0.0.1:8765）
+docker compose up -d
+
+# 3. 查看运行状态与日志
+docker compose ps
+docker compose logs -f
+```
+
+---
+
+### 3. 方式 B：Linux 原生 Systemd 服务部署
+
+如果不使用 Docker，可直接通过 systemd 管理常驻进程：
+
+```bash
+# 1. 准备运行环境
+git clone https://github.com/lxinfei5/palimpsest.git /home/ubuntu/palimpsest
+cd /home/ubuntu/palimpsest
+python3 -m venv .venv
+.venv/bin/pip install -e .
+
+# 2. 安装 systemd 服务（参考 deploy/palimpsest.service）
+sudo cp deploy/palimpsest.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now palimpsest
+
+# 3. 检查服务运行状态
+sudo systemctl status palimpsest
+```
+
+---
+
+### 4. 反向代理配置（以 Nginx 为例）
+
+将 [`deploy/nginx-lxinfei5.conf`](./deploy/nginx-lxinfei5.conf) 部署至服务器：
+
+```bash
+# 1. 复制站点配置
+sudo cp deploy/nginx-lxinfei5.conf /etc/nginx/sites-available/lxinfei5.win
+sudo ln -s /etc/nginx/sites-available/lxinfei5.win /etc/nginx/sites-enabled/
+
+# 2. 测试配置并重载
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+并在 **Cloudflare 控制台** 中：
+- 将 `lxinfei5.win` 的 DNS 解析记录开启橙色云朵（**Proxied** 代理模式）。
+- 在 **SSL/TLS** 设置中选择 **Flexible** 或 **Full** 模式。
+- 开启 **Always Use HTTPS** 与 **HTTP/2** 支持。
 
 ---
 
